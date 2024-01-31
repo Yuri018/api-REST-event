@@ -27,7 +27,11 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public EventDto addEvent(NewEventDto newEvent) {
-        Event event = new Event(newEvent.getName(), newEvent.getDescription(), newEvent.getDate());
+        Event event = Event.builder()
+                .name(newEvent.getName())
+                .description(newEvent.getDescription())
+                .date(newEvent.getDate())
+                .build();
         eventRepository.save(event);
         return from(event);
     }
