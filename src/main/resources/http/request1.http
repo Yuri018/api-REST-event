@@ -8,5 +8,5 @@ Content-Type: application/json
 {
 "name": "event1",
 "description": "added Event 1",
-"date": "01.01.2024"
+"date": "2024-01-01"
 }

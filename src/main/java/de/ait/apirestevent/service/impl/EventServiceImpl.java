@@ -2,6 +2,7 @@ package de.ait.apirestevent.service.impl;
 
 import de.ait.apirestevent.dto.EventDto;
 import de.ait.apirestevent.dto.NewEventDto;
+import de.ait.apirestevent.dto.UpdateEventDto;
 import de.ait.apirestevent.entity.Event;
 import de.ait.apirestevent.repository.EventRepository;
 import de.ait.apirestevent.service.EventService;
@@ -34,5 +35,29 @@ public class EventServiceImpl implements EventService {
                 .build();
         eventRepository.save(event);
         return from(event);
+    }
+
+    @Override
+    public EventDto getEvent(Long id) {
+        return from(eventRepository.findById(id));
+    }
+
+    @Override
+    public EventDto updateEvent(Long id, UpdateEventDto updateEvent) {
+        Event eventForUpdate = eventRepository.findById(id);
+        eventForUpdate.setName(updateEvent.getName());
+        eventForUpdate.setDescription(updateEvent.getDescription());
+        eventForUpdate.setDate(updateEvent.getDate());
+
+        return from(eventForUpdate);
+    }
+
+    @Override
+    public EventDto deleteEvent(Long id) {
+        Event eventForDelete = eventRepository.findById(id);
+
+        eventRepository.deleteById(id);
+
+        return from(eventForDelete);
     }
 }
