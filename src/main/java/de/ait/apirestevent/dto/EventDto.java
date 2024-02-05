@@ -15,8 +15,10 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema(name = "New event", description = "How to add new event")
+@Schema(name = "Event", description = "Event info")
 public class EventDto {
+    @Schema(description = "Event ID", example = "1")
+    private Long id;
     @Schema(description = "Event name", example = "Event 1")
     private String name;
     @Schema(description = "Event description", example = "This is a new event")
@@ -25,7 +27,7 @@ public class EventDto {
     private LocalDate date;
 
     public static EventDto from(Event event){
-        return new EventDto(event.getName(), event.getDescription(), event.getDate());
+        return new EventDto(event.getId(), event.getName(), event.getDescription(), event.getDate());
     }
 
     public static List<EventDto> from(List<Event> events){

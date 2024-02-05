@@ -29,9 +29,9 @@ public class EventRepositoryJdbcImpl implements EventRepository {
 
     private static final RowMapper<Event> EVENT_ROW_MAPPER = ((row, rowNum) -> {
         Long id = row.getLong("id");
-        String name = row.getNString("name");
-        String description = row.getNString("description");
-        String date = String.valueOf(row.getDate("date"));
+        String name = row.getString("name");
+        String description = row.getString("description");
+        String date = row.getString("date");
 
         return Event.builder()
                 .id(id)

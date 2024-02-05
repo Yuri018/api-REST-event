@@ -7,27 +7,33 @@ import de.ait.apirestevent.service.EventService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
-@Controller
+//@AllArgsConstructor
+//@Controller
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/api/events")
 public class EventController {
 
     private final EventService eventService;
 
     @Operation(summary = "Get all events", description = "For admin only ")
-    @GetMapping("/events")
-    @ResponseBody
+    @GetMapping()
+//    @ResponseBody
     public List<EventDto> getAllEvents() {
         return eventService.getAllEvents();
     }
 
     @Operation(summary = "Add new event", description = "For Admin only")
-    @PostMapping("/events")
-    @ResponseBody
+    @PostMapping()
+//    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     public EventDto add(@RequestBody NewEventDto newEvent) {
         return eventService.addEvent(newEvent);
     }

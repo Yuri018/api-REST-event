@@ -8,6 +8,6 @@ public interface CrudRepository<T>{
     T findById(Long id);
     List<T> findAll();
     void save(T model);
-    Event deleteById(Long id);
+    T deleteById(Long id);
     void update(T model);
 }
